@@ -88,6 +88,17 @@ def get_company_info(symbol):
     except Exception:
         pass
         
+    # Custom metadata overrides for Indian market indices
+    if symbol == "^NSEI":
+        info_dict["name"] = "NIFTY 50"
+        info_dict["summary"] = "The NIFTY 50 is the flagship index on the National Stock Exchange of India (NSE), tracking the performance of the 50 largest and most liquid Indian company stocks across various sectors."
+    elif symbol == "^BSESN":
+        info_dict["name"] = "SENSEX"
+        info_dict["summary"] = "The S&P BSE SENSEX is the benchmark index of the Bombay Stock Exchange (BSE) in India, comprising 30 prominent, large, and financially sound companies across key industries."
+    elif symbol == "^NSEBANK":
+        info_dict["name"] = "BANK NIFTY"
+        info_dict["summary"] = "The NIFTY Bank Index (BANK NIFTY) tracks the performance of the most liquid and large-capitalization Indian banking sector stocks."
+
     return info_dict
 
 def get_indices_data():

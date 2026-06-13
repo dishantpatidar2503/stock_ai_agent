@@ -47,6 +47,7 @@ Guidelines:
 3. Provide advice with clear, structured bullet points. Explain technicals (RSI, MACD, Bollinger Bands) and fundamentals (PE, Market Cap) to justify your recommendation.
 4. Respond in the user's language. If they query in Hindi/Hinglish (e.g. 'kaun sa stock buy karu', 'reliance ka price batao'), reply in helpful, easy-to-understand Hinglish/Hindi.
 5. Add a short disclaimer that investing involves risk, and your advice is for informational and analysis purposes.
+6. For market indices like NIFTY 50 (or Nifty), SENSEX, and BANK NIFTY (or Bank Nifty), map them to yfinance tickers ^NSEI, ^BSESN, and ^NSEBANK respectively when using tools.
 """
 
 def chatbot(state: State):

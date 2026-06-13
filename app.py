@@ -171,7 +171,7 @@ html, body, [class*="css"], .stMarkdown {
 st.markdown("""
 <div class="groww-header">
     <div class="groww-logo">
-        📈 Groww<span>AI</span>
+        📈 Dishant's<span>AI Agent</span>
     </div>
     <div style="background-color: #e6fcf5; color: #00d09c; padding: 6px 14px; border-radius: 20px; font-weight: 600; font-size: 12px; display: flex; align-items: center; gap: 6px;">
         <span style="width: 8px; height: 8px; background-color: #00d09c; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite;"></span>
@@ -201,6 +201,16 @@ for idx, (name, quote) in enumerate(indices_data.items()):
             </div>
         </div>
         """, unsafe_allow_html=True)
+        
+        # Interactive analysis button
+        tickers = {
+            "NIFTY 50": "^NSEI",
+            "SENSEX": "^BSESN",
+            "BANK NIFTY": "^NSEBANK"
+        }
+        if st.button(f"Analyze {name} 📊", key=f"btn_idx_{name}", use_container_width=True):
+            st.session_state.selected_stock = tickers[name]
+            st.rerun()
 
 st.write("")  # Whitespace
 
@@ -280,7 +290,7 @@ with tab_explore:
                 
     st.markdown("""
     <div style="font-size: 12px; color: #64748b; margin-top: -10px; margin-bottom: 20px;">
-        💡 <b>Tip</b>: Indian stocks require <b>.NS</b> suffix (NSE) or <b>.BO</b> (BSE) e.g., <b>TCS.NS</b>. US stocks like <b>AAPL</b>, <b>TSLA</b> require no suffix.
+        💡 <b>Tip</b>: Indian stocks require <b>.NS</b> suffix (NSE) or <b>.BO</b> (BSE) e.g., <b>TCS.NS</b>. Market indices require a leading <b>^</b> e.g. <b>^NSEI</b> (Nifty 50), <b>^BSESN</b> (Sensex), <b>^NSEBANK</b> (Bank Nifty). US stocks like <b>AAPL</b>, <b>TSLA</b> require no suffix.
     </div>
     """, unsafe_allow_html=True)
 
@@ -294,7 +304,7 @@ with tab_explore:
             info = get_company_info(active_symbol)
             
             # Currency formatting
-            curr = "₹" if (".NS" in active_symbol or ".BO" in active_symbol) else "$"
+            curr = "₹" if (".NS" in active_symbol or ".BO" in active_symbol or active_symbol.startswith("^")) else "$"
             
             # Setup columns for header metrics
             anal_col1, anal_col2, anal_col3, anal_col4 = st.columns([2, 1, 1, 1])
